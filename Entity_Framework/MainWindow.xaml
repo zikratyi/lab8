@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Button x:Name="buttonViewClient" Content="Client info" HorizontalAlignment="Left" Height="31" Margin="45,43,0,0" VerticalAlignment="Top" Width="108" Click="buttonViewClient_Click"/>
+        <Button x:Name="buttonViewClientFirm" Content="Firm info" HorizontalAlignment="Left" Height="31" Margin="45,98,0,0" VerticalAlignment="Top" Width="108" Click="buttonViewClientFirm_Click"/>
+        <Button x:Name="buttonViewManager" Content="Manager info" HorizontalAlignment="Left" Height="31" Margin="45,150,0,0" VerticalAlignment="Top" Width="108" Click="buttonViewManager_Click"/>
+        <Label x:Name="labelView" Content="View info" HorizontalAlignment="Left" Height="27" Margin="34,0,0,0" VerticalAlignment="Top" Width="93"/>
+        <TextBox x:Name="textBoxLastName" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="33" Margin="253,43,0,0" TextWrapping="Wrap" Text="Input last name client" VerticalAlignment="Top" Width="125" GotFocus="textBoxLastName_GotFocus"/>
+        <Button x:Name="buttonGetClient" Content="Search client" HorizontalAlignment="Left" Height="31" Margin="393,44,0,0" VerticalAlignment="Top" Width="108  " Click="buttonGetClient_Click"/>
+        <Button x:Name="buttonRaitingSoftware" Content="Raiting Software" HorizontalAlignment="Left" Height="31" Margin="45,256,0,0" VerticalAlignment="Top" Width="108" Click="buttonRaitingSoftware_Click"/>
+        <Button x:Name="buttonListSoftware" Content="Price Software" HorizontalAlignment="Left" Height="31" Margin="45,203,0,0" VerticalAlignment="Top" Width="108" Click="buttonListSoftware_Click"/>
+        <Button x:Name="buttonTopManager" Content="Top Manager" HorizontalAlignment="Left" Height="31" Margin="393,95,0,0" VerticalAlignment="Top" Width="108" Click="buttonTopManager_Click"/>
+        <TextBox x:Name="textBoxMonth" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="47" Margin="251,85,0,0" TextWrapping="Wrap" Text="Input date in format mm/yyyy" VerticalAlignment="Top" Width="125" GotFocus="textBoxMonth_GotFocus"/>
+        <Button x:Name="buttonAverage" Content="Average request " HorizontalAlignment="Left" Height="31" Margin="200,256,0,0" VerticalAlignment="Top" Width="108" Click="buttonAverage_Click"/>
+
     </Grid>
 </Window>

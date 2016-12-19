@@ -1,0 +1,1131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="zikratiy_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="ID_address" />
+          </Key>
+          <Property Name="ID_address" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="30" />
+          <Property Name="street" Type="varchar" MaxLength="30" />
+          <Property Name="number_house" Type="varchar" MaxLength="10" />
+          <Property Name="number_flat" Type="int" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID_client" />
+          </Key>
+          <Property Name="ID_client" Type="int" Nullable="false" />
+          <Property Name="personal_info" Type="int" />
+          <Property Name="address_client" Type="int" />
+        </EntityType>
+        <EntityType Name="Client_firm">
+          <Key>
+            <PropertyRef Name="ID_firm" />
+          </Key>
+          <Property Name="ID_firm" Type="int" Nullable="false" />
+          <Property Name="name_firm" Type="varchar" MaxLength="30" />
+          <Property Name="personal_info_confidant" Type="int" />
+          <Property Name="VAT" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="address_firm" Type="int" />
+        </EntityType>
+        <EntityType Name="Client_log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="change_date" Type="datetime" />
+          <Property Name="id_client" Type="int" />
+          <Property Name="client_info" Type="varchar" MaxLength="200" />
+          <Property Name="client_status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="List_software">
+          <Key>
+            <PropertyRef Name="ID_software" />
+          </Key>
+          <Property Name="ID_software" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_software" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="300" />
+          <Property Name="provider" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ID_manager" />
+          </Key>
+          <Property Name="ID_manager" Type="int" Nullable="false" />
+          <Property Name="login_manager" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password_manager" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="personal_info" Type="int" />
+          <Property Name="address_manager" Type="int" />
+        </EntityType>
+        <EntityType Name="Personal_info">
+          <Key>
+            <PropertyRef Name="ID_personal_info" />
+          </Key>
+          <Property Name="ID_personal_info" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="15" />
+          <Property Name="e_mail" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Price_software">
+          <Key>
+            <PropertyRef Name="article" />
+          </Key>
+          <Property Name="article" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="software" Type="int" Nullable="false" />
+          <Property Name="regular_price" Type="float" Nullable="false" />
+          <Property Name="discount" Type="varchar" MaxLength="10" />
+          <Property Name="action_price" Type="float" />
+          <Property Name="note_action" Type="varchar" MaxLength="100" />
+          <Property Name="item" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="ID_request" />
+          </Key>
+          <Property Name="ID_request" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="data_request" Type="date" Nullable="false" />
+          <Property Name="manager" Type="int" Nullable="false" />
+          <Property Name="client_firm" Type="int" />
+          <Property Name="client" Type="int" />
+          <Property Name="article_software" Type="int" Nullable="false" />
+          <Property Name="regular_price" Type="float" />
+          <Property Name="discount" Type="float" />
+          <Property Name="result_price" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'zikratiy_db.dbo.View_Client' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Client">
+          <Key>
+            <PropertyRef Name="ID_client" />
+          </Key>
+          <Property Name="ID_client" Type="int" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="15" />
+          <Property Name="e_mail" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="30" />
+          <Property Name="street" Type="varchar" MaxLength="30" />
+          <Property Name="number_house" Type="varchar" MaxLength="10" />
+          <Property Name="number_flat" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'zikratiy_db.dbo.View_Client_firm' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Client_firm">
+          <Key>
+            <PropertyRef Name="ID_firm" />
+            <PropertyRef Name="VAT" />
+          </Key>
+          <Property Name="ID_firm" Type="int" Nullable="false" />
+          <Property Name="name_firm" Type="varchar" MaxLength="30" />
+          <Property Name="VAT" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="last_name_confidant" Type="varchar" MaxLength="50" />
+          <Property Name="first_name_confidant" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="15" />
+          <Property Name="e_mail" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="30" />
+          <Property Name="street" Type="varchar" MaxLength="30" />
+          <Property Name="number_house" Type="varchar" MaxLength="10" />
+          <Property Name="number_room" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'zikratiy_db.dbo.View_Manager' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Manager">
+          <Key>
+            <PropertyRef Name="ID_manager" />
+            <PropertyRef Name="login_manager" />
+            <PropertyRef Name="password_manager" />
+          </Key>
+          <Property Name="ID_manager" Type="int" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" />
+          <Property Name="login_manager" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password_manager" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="15" />
+          <Property Name="e_mail" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="30" />
+          <Property Name="street" Type="varchar" MaxLength="30" />
+          <Property Name="number_house" Type="varchar" MaxLength="10" />
+          <Property Name="number_flat" Type="int" />
+        </EntityType>
+        <Association Name="fk1_client_firm_personal_info">
+          <End Role="Personal_info" Type="Self.Personal_info" Multiplicity="0..1" />
+          <End Role="Client_firm" Type="Self.Client_firm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal_info">
+              <PropertyRef Name="ID_personal_info" />
+            </Principal>
+            <Dependent Role="Client_firm">
+              <PropertyRef Name="personal_info_confidant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk1_client_personal_info">
+          <End Role="Personal_info" Type="Self.Personal_info" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal_info">
+              <PropertyRef Name="ID_personal_info" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="personal_info" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk1_manager_personal_info">
+          <End Role="Personal_info" Type="Self.Personal_info" Multiplicity="0..1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal_info">
+              <PropertyRef Name="ID_personal_info" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="personal_info" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk1_price_software_software">
+          <End Role="List_software" Type="Self.List_software" Multiplicity="1" />
+          <End Role="Price_software" Type="Self.Price_software" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="List_software">
+              <PropertyRef Name="ID_software" />
+            </Principal>
+            <Dependent Role="Price_software">
+              <PropertyRef Name="software" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk1_request_manager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="ID_manager" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk2_client_address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID_address" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="address_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk2_client_firm_address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Client_firm" Type="Self.Client_firm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID_address" />
+            </Principal>
+            <Dependent Role="Client_firm">
+              <PropertyRef Name="address_firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk2_manager_address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID_address" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="address_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk2_request_client_firm">
+          <End Role="Client_firm" Type="Self.Client_firm" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client_firm">
+              <PropertyRef Name="ID_firm" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="client_firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk3_reques_client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID_client" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk4_request_price_software">
+          <End Role="Price_software" Type="Self.Price_software" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price_software">
+              <PropertyRef Name="article" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="article_software" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CheckLastName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Client_toString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="ID_client" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Client_toString_3par" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="ID_client" Type="int" Mode="In" />
+          <Parameter Name="ID_address" Type="int" Mode="In" />
+          <Parameter Name="ID_personal_info" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_client" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="last_name" Type="varchar" Mode="In" />
+          <Parameter Name="first_name" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="city" Type="varchar" Mode="In" />
+          <Parameter Name="street" Type="varchar" Mode="In" />
+          <Parameter Name="number_house" Type="varchar" Mode="In" />
+          <Parameter Name="number_flat" Type="int" Mode="In" />
+          <Parameter Name="ID_client" Type="int" Mode="InOut" />
+          <Parameter Name="ID_address" Type="int" Mode="InOut" />
+          <Parameter Name="ID_personal_info" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="Orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="OrdersCorporative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="RaitingSoftware" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="RequestManager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TopManagerForMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="month" Type="int" Mode="In" />
+          <Parameter Name="year" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TopManagerForYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="year" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TopManagerLastMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_client" Type="int" Mode="In" />
+          <Parameter Name="last_name" Type="varchar" Mode="In" />
+          <Parameter Name="first_name" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="city" Type="varchar" Mode="In" />
+          <Parameter Name="street" Type="varchar" Mode="In" />
+          <Parameter Name="number_house" Type="varchar" Mode="In" />
+          <Parameter Name="number_flat" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ViewClients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="zikratiy_dbModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client_firm" EntityType="Self.Client_firm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client_log" EntityType="Self.Client_log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="List_software" EntityType="Self.List_software" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personal_info" EntityType="Self.Personal_info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price_software" EntityType="Self.Price_software" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_Client" EntityType="Self.View_Client" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Client].[ID_client] AS [ID_client], 
+    [View_Client].[last_name] AS [last_name], 
+    [View_Client].[first_name] AS [first_name], 
+    [View_Client].[phone] AS [phone], 
+    [View_Client].[e_mail] AS [e_mail], 
+    [View_Client].[city] AS [city], 
+    [View_Client].[street] AS [street], 
+    [View_Client].[number_house] AS [number_house], 
+    [View_Client].[number_flat] AS [number_flat]
+    FROM [dbo].[View_Client] AS [View_Client]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Client_firm" EntityType="Self.View_Client_firm" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Client_firm].[ID_firm] AS [ID_firm], 
+    [View_Client_firm].[name_firm] AS [name_firm], 
+    [View_Client_firm].[VAT] AS [VAT], 
+    [View_Client_firm].[last_name_confidant] AS [last_name_confidant], 
+    [View_Client_firm].[first_name_confidant] AS [first_name_confidant], 
+    [View_Client_firm].[phone] AS [phone], 
+    [View_Client_firm].[e_mail] AS [e_mail], 
+    [View_Client_firm].[city] AS [city], 
+    [View_Client_firm].[street] AS [street], 
+    [View_Client_firm].[number_house] AS [number_house], 
+    [View_Client_firm].[number_room] AS [number_room]
+    FROM [dbo].[View_Client_firm] AS [View_Client_firm]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Manager" EntityType="Self.View_Manager" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Manager].[ID_manager] AS [ID_manager], 
+    [View_Manager].[last_name] AS [last_name], 
+    [View_Manager].[first_name] AS [first_name], 
+    [View_Manager].[login_manager] AS [login_manager], 
+    [View_Manager].[password_manager] AS [password_manager], 
+    [View_Manager].[phone] AS [phone], 
+    [View_Manager].[e_mail] AS [e_mail], 
+    [View_Manager].[city] AS [city], 
+    [View_Manager].[street] AS [street], 
+    [View_Manager].[number_house] AS [number_house], 
+    [View_Manager].[number_flat] AS [number_flat]
+    FROM [dbo].[View_Manager] AS [View_Manager]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk1_client_firm_personal_info" Association="Self.fk1_client_firm_personal_info">
+            <End Role="Personal_info" EntitySet="Personal_info" />
+            <End Role="Client_firm" EntitySet="Client_firm" />
+          </AssociationSet>
+          <AssociationSet Name="fk1_client_personal_info" Association="Self.fk1_client_personal_info">
+            <End Role="Personal_info" EntitySet="Personal_info" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="fk1_manager_personal_info" Association="Self.fk1_manager_personal_info">
+            <End Role="Personal_info" EntitySet="Personal_info" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="fk1_price_software_software" Association="Self.fk1_price_software_software">
+            <End Role="List_software" EntitySet="List_software" />
+            <End Role="Price_software" EntitySet="Price_software" />
+          </AssociationSet>
+          <AssociationSet Name="fk1_request_manager" Association="Self.fk1_request_manager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="fk2_client_address" Association="Self.fk2_client_address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="fk2_client_firm_address" Association="Self.fk2_client_firm_address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Client_firm" EntitySet="Client_firm" />
+          </AssociationSet>
+          <AssociationSet Name="fk2_manager_address" Association="Self.fk2_manager_address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="fk2_request_client_firm" Association="Self.fk2_request_client_firm">
+            <End Role="Client_firm" EntitySet="Client_firm" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="fk3_reques_client" Association="Self.fk3_reques_client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="fk4_request_price_software" Association="Self.fk4_request_price_software">
+            <End Role="Price_software" EntitySet="Price_software" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="zikratiy_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="ID_address" />
+          </Key>
+          <Property Name="ID_address" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="street" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="number_house" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="number_flat" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.fk2_client_address" FromRole="Address" ToRole="Client" />
+          <NavigationProperty Name="Client_firm" Relationship="Self.fk2_client_firm_address" FromRole="Address" ToRole="Client_firm" />
+          <NavigationProperty Name="Manager" Relationship="Self.fk2_manager_address" FromRole="Address" ToRole="Manager" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID_client" />
+          </Key>
+          <Property Name="ID_client" Type="Int32" Nullable="false" />
+          <Property Name="personal_info" Type="Int32" />
+          <Property Name="address_client" Type="Int32" />
+          <NavigationProperty Name="Address" Relationship="Self.fk2_client_address" FromRole="Client" ToRole="Address" />
+          <NavigationProperty Name="Personal_info1" Relationship="Self.fk1_client_personal_info" FromRole="Client" ToRole="Personal_info" />
+          <NavigationProperty Name="Request" Relationship="Self.fk3_reques_client" FromRole="Client" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Client_firm">
+          <Key>
+            <PropertyRef Name="ID_firm" />
+          </Key>
+          <Property Name="ID_firm" Type="Int32" Nullable="false" />
+          <Property Name="name_firm" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="personal_info_confidant" Type="Int32" />
+          <Property Name="VAT" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address_firm" Type="Int32" />
+          <NavigationProperty Name="Address" Relationship="Self.fk2_client_firm_address" FromRole="Client_firm" ToRole="Address" />
+          <NavigationProperty Name="Personal_info" Relationship="Self.fk1_client_firm_personal_info" FromRole="Client_firm" ToRole="Personal_info" />
+          <NavigationProperty Name="Request" Relationship="Self.fk2_request_client_firm" FromRole="Client_firm" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Client_log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="change_date" Type="DateTime" Precision="3" />
+          <Property Name="id_client" Type="Int32" />
+          <Property Name="client_info" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="client_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="List_software">
+          <Key>
+            <PropertyRef Name="ID_software" />
+          </Key>
+          <Property Name="ID_software" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_software" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Price_software" Relationship="Self.fk1_price_software_software" FromRole="List_software" ToRole="Price_software" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ID_manager" />
+          </Key>
+          <Property Name="ID_manager" Type="Int32" Nullable="false" />
+          <Property Name="login_manager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_manager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="personal_info" Type="Int32" />
+          <Property Name="address_manager" Type="Int32" />
+          <NavigationProperty Name="Address" Relationship="Self.fk2_manager_address" FromRole="Manager" ToRole="Address" />
+          <NavigationProperty Name="Personal_info1" Relationship="Self.fk1_manager_personal_info" FromRole="Manager" ToRole="Personal_info" />
+          <NavigationProperty Name="Request" Relationship="Self.fk1_request_manager" FromRole="Manager" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Personal_info">
+          <Key>
+            <PropertyRef Name="ID_personal_info" />
+          </Key>
+          <Property Name="ID_personal_info" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Client" Relationship="Self.fk1_client_personal_info" FromRole="Personal_info" ToRole="Client" />
+          <NavigationProperty Name="Client_firm" Relationship="Self.fk1_client_firm_personal_info" FromRole="Personal_info" ToRole="Client_firm" />
+          <NavigationProperty Name="Manager" Relationship="Self.fk1_manager_personal_info" FromRole="Personal_info" ToRole="Manager" />
+        </EntityType>
+        <EntityType Name="Price_software">
+          <Key>
+            <PropertyRef Name="article" />
+          </Key>
+          <Property Name="article" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="software" Type="Int32" Nullable="false" />
+          <Property Name="regular_price" Type="Double" Nullable="false" />
+          <Property Name="discount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="action_price" Type="Double" />
+          <Property Name="note_action" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="List_software" Relationship="Self.fk1_price_software_software" FromRole="Price_software" ToRole="List_software" />
+          <NavigationProperty Name="Request" Relationship="Self.fk4_request_price_software" FromRole="Price_software" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="ID_request" />
+          </Key>
+          <Property Name="ID_request" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data_request" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="manager" Type="Int32" Nullable="false" />
+          <Property Name="client_firm" Type="Int32" />
+          <Property Name="client" Type="Int32" />
+          <Property Name="article_software" Type="Int32" Nullable="false" />
+          <Property Name="regular_price" Type="Double" />
+          <Property Name="discount" Type="Double" />
+          <Property Name="result_price" Type="Double" />
+          <NavigationProperty Name="Client1" Relationship="Self.fk3_reques_client" FromRole="Request" ToRole="Client" />
+          <NavigationProperty Name="Client_firm1" Relationship="Self.fk2_request_client_firm" FromRole="Request" ToRole="Client_firm" />
+          <NavigationProperty Name="Manager1" Relationship="Self.fk1_request_manager" FromRole="Request" ToRole="Manager" />
+          <NavigationProperty Name="Price_software" Relationship="Self.fk4_request_price_software" FromRole="Request" ToRole="Price_software" />
+        </EntityType>
+        <EntityType Name="View_Client">
+          <Key>
+            <PropertyRef Name="ID_client" />
+          </Key>
+          <Property Name="ID_client" Type="Int32" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="street" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="number_house" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="number_flat" Type="Int32" />
+        </EntityType>
+        <EntityType Name="View_Client_firm">
+          <Key>
+            <PropertyRef Name="ID_firm" />
+            <PropertyRef Name="VAT" />
+          </Key>
+          <Property Name="ID_firm" Type="Int32" Nullable="false" />
+          <Property Name="name_firm" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="VAT" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name_confidant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="first_name_confidant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="street" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="number_house" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="number_room" Type="Int32" />
+        </EntityType>
+        <EntityType Name="View_Manager">
+          <Key>
+            <PropertyRef Name="ID_manager" />
+            <PropertyRef Name="login_manager" />
+            <PropertyRef Name="password_manager" />
+          </Key>
+          <Property Name="ID_manager" Type="Int32" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="login_manager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_manager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="street" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="number_house" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="number_flat" Type="Int32" />
+        </EntityType>
+        <Association Name="fk2_client_address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID_address" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="address_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk2_client_firm_address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Client_firm" Type="Self.Client_firm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID_address" />
+            </Principal>
+            <Dependent Role="Client_firm">
+              <PropertyRef Name="address_firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk2_manager_address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID_address" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="address_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk1_client_personal_info">
+          <End Role="Personal_info" Type="Self.Personal_info" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal_info">
+              <PropertyRef Name="ID_personal_info" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="personal_info" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk3_reques_client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID_client" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk1_client_firm_personal_info">
+          <End Role="Personal_info" Type="Self.Personal_info" Multiplicity="0..1" />
+          <End Role="Client_firm" Type="Self.Client_firm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal_info">
+              <PropertyRef Name="ID_personal_info" />
+            </Principal>
+            <Dependent Role="Client_firm">
+              <PropertyRef Name="personal_info_confidant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk2_request_client_firm">
+          <End Role="Client_firm" Type="Self.Client_firm" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client_firm">
+              <PropertyRef Name="ID_firm" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="client_firm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk1_price_software_software">
+          <End Role="List_software" Type="Self.List_software" Multiplicity="1" />
+          <End Role="Price_software" Type="Self.Price_software" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="List_software">
+              <PropertyRef Name="ID_software" />
+            </Principal>
+            <Dependent Role="Price_software">
+              <PropertyRef Name="software" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk1_manager_personal_info">
+          <End Role="Personal_info" Type="Self.Personal_info" Multiplicity="0..1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal_info">
+              <PropertyRef Name="ID_personal_info" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="personal_info" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk1_request_manager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="ID_manager" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk4_request_price_software">
+          <End Role="Price_software" Type="Self.Price_software" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price_software">
+              <PropertyRef Name="article" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="article_software" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="zikratiy_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Address" EntityType="Self.Address" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Client_firm" EntityType="Self.Client_firm" />
+          <EntitySet Name="Client_log" EntityType="Self.Client_log" />
+          <EntitySet Name="List_software" EntityType="Self.List_software" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" />
+          <EntitySet Name="Personal_info" EntityType="Self.Personal_info" />
+          <EntitySet Name="Price_software" EntityType="Self.Price_software" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="View_Client" EntityType="Self.View_Client" />
+          <EntitySet Name="View_Client_firm" EntityType="Self.View_Client_firm" />
+          <EntitySet Name="View_Manager" EntityType="Self.View_Manager" />
+          <AssociationSet Name="fk2_client_address" Association="Self.fk2_client_address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="fk2_client_firm_address" Association="Self.fk2_client_firm_address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Client_firm" EntitySet="Client_firm" />
+          </AssociationSet>
+          <AssociationSet Name="fk2_manager_address" Association="Self.fk2_manager_address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="fk1_client_personal_info" Association="Self.fk1_client_personal_info">
+            <End Role="Personal_info" EntitySet="Personal_info" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="fk3_reques_client" Association="Self.fk3_reques_client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="fk1_client_firm_personal_info" Association="Self.fk1_client_firm_personal_info">
+            <End Role="Personal_info" EntitySet="Personal_info" />
+            <End Role="Client_firm" EntitySet="Client_firm" />
+          </AssociationSet>
+          <AssociationSet Name="fk2_request_client_firm" Association="Self.fk2_request_client_firm">
+            <End Role="Client_firm" EntitySet="Client_firm" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="fk1_price_software_software" Association="Self.fk1_price_software_software">
+            <End Role="List_software" EntitySet="List_software" />
+            <End Role="Price_software" EntitySet="Price_software" />
+          </AssociationSet>
+          <AssociationSet Name="fk1_manager_personal_info" Association="Self.fk1_manager_personal_info">
+            <End Role="Personal_info" EntitySet="Personal_info" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="fk1_request_manager" Association="Self.fk1_request_manager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="fk4_request_price_software" Association="Self.fk4_request_price_software">
+            <End Role="Price_software" EntitySet="Price_software" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <FunctionImport Name="CheckLastName" />
+          <FunctionImport Name="DeleteClient">
+            <Parameter Name="ID_client" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertClient">
+            <Parameter Name="last_name" Mode="In" Type="String" />
+            <Parameter Name="first_name" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="street" Mode="In" Type="String" />
+            <Parameter Name="number_house" Mode="In" Type="String" />
+            <Parameter Name="number_flat" Mode="In" Type="Int32" />
+            <Parameter Name="ID_client" Mode="InOut" Type="Int32" />
+            <Parameter Name="ID_address" Mode="InOut" Type="Int32" />
+            <Parameter Name="ID_personal_info" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Orders" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="OrdersCorporative" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="RaitingSoftware" ReturnType="Collection(zikratiy_dbModel.RaitingSoftware_Result)" />
+          <FunctionImport Name="RequestManager" ReturnType="Collection(zikratiy_dbModel.RequestManager_Result)" />
+          <FunctionImport Name="TopManagerForMonth" ReturnType="Collection(zikratiy_dbModel.TopManagerForMonth_Result)">
+            <Parameter Name="month" Mode="In" Type="Int32" />
+            <Parameter Name="year" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TopManagerForYear" ReturnType="Collection(zikratiy_dbModel.TopManagerForYear_Result)">
+            <Parameter Name="year" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TopManagerLastMonth" ReturnType="Collection(zikratiy_dbModel.TopManagerLastMonth_Result)" />
+          <FunctionImport Name="UpdateClient">
+            <Parameter Name="ID_client" Mode="In" Type="Int32" />
+            <Parameter Name="last_name" Mode="In" Type="String" />
+            <Parameter Name="first_name" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="street" Mode="In" Type="String" />
+            <Parameter Name="number_house" Mode="In" Type="String" />
+            <Parameter Name="number_flat" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ViewClients" ReturnType="Collection(zikratiy_dbModel.ViewClients_Result)" />
+        </EntityContainer>
+        <ComplexType Name="RaitingSoftware_Result">
+          <Property Type="String" Name="name_software" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Raiting" Nullable="true" />
+          <Property Type="Double" Name="Persent" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="RequestManager_Result">
+          <Property Type="Int32" Name="request" Nullable="false" />
+          <Property Type="String" Name="date_request" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="manager" Nullable="false" MaxLength="101" />
+        </ComplexType>
+        <ComplexType Name="TopManagerForMonth_Result">
+          <Property Type="Int32" Name="manager" Nullable="false" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Total_sale" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TopManagerForYear_Result">
+          <Property Type="Int32" Name="manager" Nullable="false" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Total_sale" Nullable="true" />
+          <Property Type="Int32" Name="Request" Nullable="true" />
+          <Property Type="Double" Name="Average_request" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TopManagerLastMonth_Result">
+          <Property Type="Int32" Name="manager" Nullable="false" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Total_sale" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ViewClients_Result">
+          <Property Type="Int32" Name="ID_client" Nullable="false" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="e_mail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="city" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="street" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="number_house" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="number_flat" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="zikratiy_dbModelStoreContainer" CdmEntityContainer="zikratiy_dbEntities">
+          <EntitySetMapping Name="Address">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="ID_address" ColumnName="ID_address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="number_house" ColumnName="number_house" />
+                <ScalarProperty Name="number_flat" ColumnName="number_flat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID_client" ColumnName="ID_client" />
+                <ScalarProperty Name="personal_info" ColumnName="personal_info" />
+                <ScalarProperty Name="address_client" ColumnName="address_client" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_firm">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.Client_firm">
+              <MappingFragment StoreEntitySet="Client_firm">
+                <ScalarProperty Name="ID_firm" ColumnName="ID_firm" />
+                <ScalarProperty Name="name_firm" ColumnName="name_firm" />
+                <ScalarProperty Name="personal_info_confidant" ColumnName="personal_info_confidant" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="address_firm" ColumnName="address_firm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_log">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.Client_log">
+              <MappingFragment StoreEntitySet="Client_log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="change_date" ColumnName="change_date" />
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="client_info" ColumnName="client_info" />
+                <ScalarProperty Name="client_status" ColumnName="client_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="List_software">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.List_software">
+              <MappingFragment StoreEntitySet="List_software">
+                <ScalarProperty Name="ID_software" ColumnName="ID_software" />
+                <ScalarProperty Name="name_software" ColumnName="name_software" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="provider" ColumnName="provider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manager">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="ID_manager" ColumnName="ID_manager" />
+                <ScalarProperty Name="login_manager" ColumnName="login_manager" />
+                <ScalarProperty Name="password_manager" ColumnName="password_manager" />
+                <ScalarProperty Name="personal_info" ColumnName="personal_info" />
+                <ScalarProperty Name="address_manager" ColumnName="address_manager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personal_info">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.Personal_info">
+              <MappingFragment StoreEntitySet="Personal_info">
+                <ScalarProperty Name="ID_personal_info" ColumnName="ID_personal_info" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price_software">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.Price_software">
+              <MappingFragment StoreEntitySet="Price_software">
+                <ScalarProperty Name="article" ColumnName="article" />
+                <ScalarProperty Name="software" ColumnName="software" />
+                <ScalarProperty Name="regular_price" ColumnName="regular_price" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="action_price" ColumnName="action_price" />
+                <ScalarProperty Name="note_action" ColumnName="note_action" />
+                <ScalarProperty Name="item" ColumnName="item" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Request">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="ID_request" ColumnName="ID_request" />
+                <ScalarProperty Name="data_request" ColumnName="data_request" />
+                <ScalarProperty Name="manager" ColumnName="manager" />
+                <ScalarProperty Name="client_firm" ColumnName="client_firm" />
+                <ScalarProperty Name="client" ColumnName="client" />
+                <ScalarProperty Name="article_software" ColumnName="article_software" />
+                <ScalarProperty Name="regular_price" ColumnName="regular_price" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="result_price" ColumnName="result_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Client">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.View_Client">
+              <MappingFragment StoreEntitySet="View_Client">
+                <ScalarProperty Name="ID_client" ColumnName="ID_client" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="number_house" ColumnName="number_house" />
+                <ScalarProperty Name="number_flat" ColumnName="number_flat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Client_firm">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.View_Client_firm">
+              <MappingFragment StoreEntitySet="View_Client_firm">
+                <ScalarProperty Name="ID_firm" ColumnName="ID_firm" />
+                <ScalarProperty Name="name_firm" ColumnName="name_firm" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="last_name_confidant" ColumnName="last_name_confidant" />
+                <ScalarProperty Name="first_name_confidant" ColumnName="first_name_confidant" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="number_house" ColumnName="number_house" />
+                <ScalarProperty Name="number_room" ColumnName="number_room" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Manager">
+            <EntityTypeMapping TypeName="zikratiy_dbModel.View_Manager">
+              <MappingFragment StoreEntitySet="View_Manager">
+                <ScalarProperty Name="ID_manager" ColumnName="ID_manager" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="login_manager" ColumnName="login_manager" />
+                <ScalarProperty Name="password_manager" ColumnName="password_manager" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="number_house" ColumnName="number_house" />
+                <ScalarProperty Name="number_flat" ColumnName="number_flat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CheckLastName" FunctionName="zikratiy_dbModel.Store.CheckLastName" />
+          <FunctionImportMapping FunctionImportName="DeleteClient" FunctionName="zikratiy_dbModel.Store.DeleteClient" />
+          <FunctionImportMapping FunctionImportName="InsertClient" FunctionName="zikratiy_dbModel.Store.InsertClient" />
+          <FunctionImportMapping FunctionImportName="Orders" FunctionName="zikratiy_dbModel.Store.Orders" />
+          <FunctionImportMapping FunctionImportName="OrdersCorporative" FunctionName="zikratiy_dbModel.Store.OrdersCorporative" />
+          <FunctionImportMapping FunctionImportName="RaitingSoftware" FunctionName="zikratiy_dbModel.Store.RaitingSoftware">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="zikratiy_dbModel.RaitingSoftware_Result">
+                <ScalarProperty Name="name_software" ColumnName="name_software" />
+                <ScalarProperty Name="Raiting" ColumnName="Raiting" />
+                <ScalarProperty Name="Persent" ColumnName="Persent" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RequestManager" FunctionName="zikratiy_dbModel.Store.RequestManager">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="zikratiy_dbModel.RequestManager_Result">
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="date_request" ColumnName="date_request" />
+                <ScalarProperty Name="manager" ColumnName="manager" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TopManagerForMonth" FunctionName="zikratiy_dbModel.Store.TopManagerForMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="zikratiy_dbModel.TopManagerForMonth_Result">
+                <ScalarProperty Name="manager" ColumnName="manager" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="Total_sale" ColumnName="Total_sale" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TopManagerForYear" FunctionName="zikratiy_dbModel.Store.TopManagerForYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="zikratiy_dbModel.TopManagerForYear_Result">
+                <ScalarProperty Name="manager" ColumnName="manager" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="Total_sale" ColumnName="Total_sale" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+                <ScalarProperty Name="Average_request" ColumnName="Average_request" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TopManagerLastMonth" FunctionName="zikratiy_dbModel.Store.TopManagerLastMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="zikratiy_dbModel.TopManagerLastMonth_Result">
+                <ScalarProperty Name="manager" ColumnName="manager" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="Total_sale" ColumnName="Total_sale" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateClient" FunctionName="zikratiy_dbModel.Store.UpdateClient" />
+          <FunctionImportMapping FunctionImportName="ViewClients" FunctionName="zikratiy_dbModel.Store.ViewClients">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="zikratiy_dbModel.ViewClients_Result">
+                <ScalarProperty Name="ID_client" ColumnName="ID_client" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="number_house" ColumnName="number_house" />
+                <ScalarProperty Name="number_flat" ColumnName="number_flat" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
